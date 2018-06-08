@@ -1,0 +1,48 @@
+import java.io.*;
+import java.lang.*;
+import java.util.*;
+
+public class ReadingFromFile {
+    
+    private Formatter x;
+    
+    public void openFile()
+    {
+        try{
+            x = new Formatter("test.txt");
+        }
+        catch(Exception e){
+            System.out.println("Error bla");
+        }
+    }
+    
+    public void addRecords(){
+        x.format("%s%s%s", "1 ", "nicu ", "i");
+    }
+    
+    public void closeFile(){
+        x.close();
+    }
+    public static void main(String[] args) throws IOException {
+        File file = new File("C:\\Users\\nicui\\Desktop\\Projects\\ReadingFromFile\\test.txt");
+        String[] token;
+        int itemId = 0;
+        String itemName = "";
+        String itemShelve = "";
+        token = new String[100];
+        
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(file));
+                    String st;
+        while ((st = br.readLine()) != null)
+           token = st.split(" ");
+           itemId = Integer.parseInt(token[0]);
+           itemName= token[1];
+           itemShelve = token[2];
+           System.out.print("numarul = " + itemId + "\nNume = " + itemName + "\nPrenume = " + itemShelve + "\n");
+        }
+        catch (Exception e){
+            System.out.println("Error bla");
+        }
+    }
+}
